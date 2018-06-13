@@ -1,0 +1,21 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+
+    <p>Titiles</p>
+    {% if user.is_authenticated %}
+    <p>
+    <a href="{% url 'blogs :new_title' %}">add new title</a>
+    </p>
+    {% endif %}
+    <ul>
+        {% for title in titles %}
+            <li>
+                <a href="{% url 'blogs:title' title.id %}">{{ title }}</a>
+            </li>
+            {% empty %}
+            <li>No blogs have been added yet.</li>
+        {% endfor %}
+        
+    </ul>
+{% endblock content %}
