@@ -1,10 +1,20 @@
 {% extends 'blogs/base.html' %}
+
+{% block header %}
+    <h2>{{ title }}</h2>
+{% endblock header %}
+
 {% block content %}
-    <p>Title: {{ title }}</p>
 
     <p>Entries:</p>
-    <p>{{ entries.date_added|date:'M d, Y H:i' }}</p>
-    <p>{{ entries }}</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                {{ entries.date_added|date:'M d, Y H:i' }}
+                {{ entries }}
+            </h3>
+        </div>
+    </div>
     {% if user.is_authenticated and title.owner == request.user %}
     <p>
         <a href="{% url 'blogs:edit_title' title.id %}">edit entry</a>
