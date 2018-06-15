@@ -6,18 +6,21 @@
 
 {% block content %}
 
-    <p>Entries:</p>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>
-                {{ entries.date_added|date:'M d, Y H:i' }}
-                {{ entries }}
-            </h3>
+            <h4>
+                {{ title.date_added|date:'M d, Y H:i' }}
+            </h4>
+        </div>
+	    <div class="panel-body">
+            <h4>
+                {{ entries|linebreaks }}
+            </h4>
         </div>
     </div>
     {% if user.is_authenticated and title.owner == request.user %}
     <p>
-        <a href="{% url 'blogs:edit_title' title.id %}">edit entry</a>
+        <a href="{% url 'blogs:edit_title' title.id %}">编辑</a>
     </p>
     {% endif %}
 {% endblock content %}
